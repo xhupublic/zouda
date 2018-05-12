@@ -1,0 +1,199 @@
+# 9.1
+
+class Line:
+    def __init__(self, c0, c1):
+        self.c0 = c0
+        self.c1 = c1
+    
+    def __call__(self, x):
+        return self.c0 + self.c1*x
+    
+    def table(self, L, R, n):
+        """Return a table with n points for L <= x <= R."""
+        s = ''
+        import numpy as np
+        for x in np.linspace(L, R, n):
+            y = self(x)
+            s += '%12g %12g\n' % (x, y)
+        return s
+
+class Parabola0(Line):
+    pass
+
+
+l = Line(1, 2)
+p = Parabola0(1, 2)
+print(l.table(1, 10, 100) == p.table(1, 10, 100))
+
+
+console output:
+True
+
+#9.5
+
+from math import pi 
+class Ellipse:
+    def __init__(self, x0, y0, l, s):
+        self.x0, self.y0, self.l, self.s = x0, y0, l, s
+    
+    def area(self):
+        return pi * self.l * self.s
+
+    def circumference(self):
+        return pi * (self.l + self.s)
+
+class Circle(Ellipse):
+    def __init__(self, x0, y0, R):
+        super(Circle, self).__init__(x0, y0, R, R)
+
+
+
+c = Circle(0, 0, 1)
+print(c.area() == pi)
+print(c.circumference() == 2 * pi)
+
+console output
+True
+True
+
+
+#9.13 
+
+#!python
+
+class Person:
+    def __init__(self, name, addr, phone_num, date_of_birth, nationality):
+        self.name = name
+        self.addr = addr
+        self.phone_num = phone_num
+        self.date_of_birth = date_of_birth
+        self.nationality = nationality
+
+    def __str__(self):
+        return "name : {}\naddr : {}\nphone : {}\nbirth : {}\nnationality : {}\n".format(self.name, self.addr, self.phone_num, self.date_of_birth, self.nationality)
+
+
+class Worker(Person):
+    def __init__(self, name, addr, phone_num, date_of_birth, nationality, company, company_addr, job_phone):
+        super(Worker, self).__init__(name, addr, phone_num, date_of_birth, nationality)
+        self.company = company
+        self.company_addr = company_addr
+        self.job_phone = job_phone
+
+    def __str__(self):
+        return "{}company : {}\ncompany addr : {}\njob phone : {}\n".format(super(Worker, self).__str__(), self.company, self.company_addr, self.job_phone)
+
+
+
+class Scientist(Worker):
+    def __init__(self, name, addr, phone_num, date_of_birth, nationality, company, company_addr, job_phone, discipline, types):
+        super(Scientist, self).__init__(name, addr, phone_num, date_of_birth, nationality, company, company_addr, job_phone)
+        self.discipline = discipline
+        self.types = types
+
+    def __str__(self):
+        return "{}discipline : {}\ntypes : {}\n".format(super(Scientist, self).__str__(), self.discipline, self.types)
+
+class Researcher(Scientist):
+    pass
+
+class Postdoc(Scientist):
+    pass
+    
+class Professor(Scientist):
+    pass
+
+
+a = Person("Alpha", "NYC", "212-123-4567", "2001/01/02", "US")
+print(a.__class__)
+print(a)
+
+
+b = Worker("Beta", "NYC", "212-123-4567", "2001/01/02", "US", "Facebook", "NYC", "212-987-6543")
+print(b.__class__)
+print(b)
+
+c = Scientist("Charile", "NYC", "212-123-4567", "2001/01/02", "US", "Facebook", "NYC", "212-987-6543", "Physics", ["experimental", "computational"])
+print(c.__class__)
+print(c)
+
+d = Researcher("Delta", "NYC", "212-123-4567", "2001/01/02", "US", "OSU", "OH", "212-987-6543", "Physics", ["experimental", "computational"])
+print(d.__class__)
+print(d)
+
+e = Postdoc("Echo", "NYC", "212-123-4567", "2001/01/02", "US", "OSU", "OH", "212-987-6543", "Physics", ["experimental", "computational"])
+print(e.__class__)
+print(e)
+
+f = Professor("Foxtrot", "NYC", "212-123-4567", "2001/01/02", "US", "OSU", "OH", "212-987-6543", "Physics", ["experimental", "computational"])
+print(f.__class__)
+print(f)
+
+console output
+
+
+
+<class '__main__.Person'>
+name : Alpha
+addr : NYC
+phone : 212-123-4567
+birth : 2001/01/02
+nationality : US
+
+<class '__main__.Worker'>
+name : Beta
+addr : NYC
+phone : 212-123-4567
+birth : 2001/01/02
+nationality : US
+company : Facebook
+company addr : NYC
+job phone : 212-987-6543
+
+<class '__main__.Scientist'>
+name : Charile
+addr : NYC
+phone : 212-123-4567
+birth : 2001/01/02
+nationality : US
+company : Facebook
+company addr : NYC
+job phone : 212-987-6543
+discipline : Physics
+types : ['experimental', 'computational']
+
+<class '__main__.Researcher'>
+name : Delta
+addr : NYC
+phone : 212-123-4567
+birth : 2001/01/02
+nationality : US
+company : OSU
+company addr : OH
+job phone : 212-987-6543
+discipline : Physics
+types : ['experimental', 'computational']
+
+<class '__main__.Postdoc'>
+name : Echo
+addr : NYC
+phone : 212-123-4567
+birth : 2001/01/02
+nationality : US
+company : OSU
+company addr : OH
+job phone : 212-987-6543
+discipline : Physics
+types : ['experimental', 'computational']
+
+<class '__main__.Professor'>
+name : Foxtrot
+addr : NYC
+phone : 212-123-4567
+birth : 2001/01/02
+nationality : US
+company : OSU
+company addr : OH
+job phone : 212-987-6543
+discipline : Physics
+types : ['experimental', 'computational']

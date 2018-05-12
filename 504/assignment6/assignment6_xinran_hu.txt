@@ -1,0 +1,301 @@
+6.1
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+import math
+
+def read_and_plot_file(fileName):
+    x = []
+    y = []
+    with open(fileName, "r") as f:
+        for line in f:
+            if line.startswith(("#")):
+                continue
+            data = line.split()
+            x.append(float(data[0].strip()))
+            y.append(float(data[1].strip()))
+
+    plt.plot(x, y)
+    plt.xlabel = 'x'
+    plt.ylabel = 'f'
+    plt.show()
+    return x, y
+
+x, y = read_and_plot_file("./files/xy.dat")
+print(max(y))
+print(min(y))
+
+
+console:
+
+0.9482
+-0.9482
+
+
+
+#6.2
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+import math
+
+def read_and_plot_file(fileName):
+    x = []
+    y = []
+    with open(fileName, "r") as f:
+        for line in f:
+            print line
+            if line.startswith(("#")):
+                continue
+            data = line.split()
+            
+            if len(data) != 2:
+                continue
+
+            x.append(float(data[0].strip()))
+            y.append(float(data[1].strip()))
+
+    plt.plot(x, y)
+    plt.xlabel = 'x'
+    plt.ylabel = 'f'
+    plt.show()
+    return x, y
+
+read_and_plot_file(sys.argv[1])
+
+
+6.8
+
+def read_file(fileName):
+    d = {}
+    with open(fileName, "r") as f:
+        for line in f:
+            print line
+            if line.startswith(("#")):
+                continue
+            data = line.split()
+            name = []
+            v = None
+            for t in data:
+                try:
+                    v = float(t)
+                    break
+                except:
+                    name.append(t)
+
+            if v is not None:
+                d[" ".join(name)] = v
+
+    print(d)
+    return d
+read_file("./files/constants.txt")
+
+console output:
+
+{'Planck constant': 6.6260755e-34, 'elementary charge': 1.60217733e-19, 'speed of light': 299792458.0, 'electron mass': 9.1093897e-31, 'Avogadro number': 6.0221367e+23, 'proton mass': 1.6726231e-27, 'gravitational constant': 6.67259e-11, 'Boltzmann constant': 1.380658e-23}
+
+
+6.9
+t1 is a dict which support square bracket to add/access any key 
+t2 is a list which only support square bracket to access valid index
+
+to fix second part, preset the length of t1 to 2 
+
+
+t2 = [None] * 2
+t2[0] = 0
+t2[1] = 1 
+
+
+
+
+6.10
+
+def read_densities(filename):
+    infile = open(filename, "r")
+    densities1 = {}
+    densities2 = {}
+    
+    for line in infile:
+        words = line.split()
+        density1 = float(words[-1])
+        substance1 = " ".join(words[:-1])
+        densities1[substance1] = density1
+
+        density2 = float(line[12:])
+        substance2 = line[0:12].strip()
+        densities2[substance2] = density2
+
+
+    infile.close()
+    print(densities1 == densities2)
+
+densities = read_densities("files/densities.dat")
+
+
+console output :
+True
+
+
+
+6.12
+
+d = {}
+for star in data:
+    d[star[0]] = star[3]
+
+print(d)
+
+
+console:
+{'Wolf 359': 2e-05, 'Alpha Centauri C': 6e-05, 'Alpha Centauri B': 0.45, 'Alpha Centauri A': 1.56, 'Luyten 726-8 A': 6e-05, 'Sirius B': 0.003, 'Sirius A': 23.6, 'Luyten 726-8 B': 4e-05, 'BD +36 degrees 2147': 0.006, "Barnard's Star": 0.0005, 'Ross 154': 0.0005}
+
+6.13 
+
+data = [
+('Alpha Centauri A', 4.3, 0.26, 1.56),
+('Alpha Centauri B', 4.3, 0.077, 0.45),
+('Alpha Centauri C', 4.2, 0.00001, 0.00006),
+('Barnard\'s Star', 6.0, 0.00004, 0.0005),
+('Wolf 359', 7.7, 0.000001, 0.00002),
+('BD +36 degrees 2147', 8.2, 0.0003, 0.006),
+('Luyten 726-8 A', 8.4, 0.000003, 0.00006),
+('Luyten 726-8 B', 8.4, 0.000002, 0.00004),
+('Sirius A', 8.6, 1.00, 23.6),
+('Sirius B', 8.6, 0.001, 0.003),
+('Ross 154', 9.4, 0.00002, 0.0005),
+]
+
+d = {}
+for star in data:
+    sd = {}
+    sd["distance"] = star[1]
+    sd["apparent brightness"] = star[2]
+    sd["luminosity"] = star[3]
+    d[star[0]] = sd
+    
+print(d)
+
+
+
+console:
+{'Wolf 359': {'distance': 7.7, 'apparent brightness': 1e-06, 'luminosity': 2e-05}, 'Alpha Centauri C': {'distance': 4.2, 'apparent brightness': 1e-05, 'luminosity': 6e-05}, 'Alpha Centauri B': {'distance': 4.3, 'apparent brightness': 0.077, 'luminosity':
+0.45}, 'Alpha Centauri A': {'distance': 4.3, 'apparent brightness': 0.26, 'luminosity': 1.56}, 'Luyten 726-8 A': {'distance': 8.4, 'apparent brightness': 3e-06, 'luminosity': 6e-05}, 'Sirius B': {'distance': 8.6, 'apparent brightness': 0.001, 'luminosity': 0.003}, 'Sirius A': {'distance': 8.6, 'apparent brightness': 1.0, 'luminosity': 23.6}, 'Luyten 726-8 B': {'distance': 8.4, 'apparent brightness': 2e-06, 'luminosity': 4e-05}, 'BD +36 degrees 2147': {'distance': 8.2, 'apparent brightness': 0.0003, 'luminosity': 0.006}, "Barnard's Star": {'distance': 6.0, 'apparent brightness': 4e-05, 'luminosity': 0.0005}, 'Ross 154': {'distance': 9.4, 'apparent brightness': 2e-05, 'luminosity': 0.0005}}
+
+
+
+6.18
+
+def read_file(filename):
+    infile = open(filename, "r")
+    infile.readline() # read column headings
+    dates = []; prices = []
+    for line in infile:
+        columns = line.split(",")
+        date = columns[0]
+        date = date[:-3] # skip day of month
+        price = columns[-1]
+        dates.append(date)
+        prices.append(float(price))
+    infile.close()
+    dates.reverse()
+    prices.reverse()
+
+    for p in prices:
+        p / prices[0]
+
+    return dates, prices
+
+d = {}
+def multiComp(companyName):
+    fileName = companyName + ".csv"
+    dates, prices = read_file(fileName)
+    d[companyName] = (dates, prices)
+    for val in d.values():
+        plt.plot(range(len(val[2])), val[2])
+
+
+6.22 
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+import math
+
+def buildCityMap(fileName):
+    d = {}
+    with open(fileName, "r") as f:
+        for line in f:
+            if line.strip().startswith("<li class=MsoNormal"):
+                line = next(f)
+                i = line.find("<b>")
+                j = line.find("</b>")
+                cityName = line[i + 3 : j].strip()
+                if cityName[-1] == "(":
+                    cityName = cityName[:-2]
+                next(f)
+                line = next(f)
+                print line
+                i = line.find(">")
+                j = line.find("<")
+                tempFile = line[i + 1:j].strip()
+                d[cityName] = "./files/city_temp/" + tempFile
+    return d
+
+cityMap = buildCityMap("./files/city_temp/citylistWorld.htm")
+
+
+def buildTempDict(city, cityMap):
+    date = []
+    temp = []
+    with open(cityMap[city], "r") as f:
+        for line in f:
+            t = line.split()
+            date.append("-".join(t[0:3]))
+            if float(t[3]) < 0:
+                print t[3]
+            temp.append(float(t[3]))
+    return date, temp
+
+d = buildTempDict("Beijing", cityMap)
+
+def plotTemp(cities, cityMap):
+    d = {}
+    for city in cities:
+        _, temp = buildTempDict(city, cityMap)
+        plt.plot(range(len(temp)), temp)
+
+    plt.show()
+
+plotTemp(["Beijing", "Paris"], cityMap)
+
+6.29
+
+def getHtml1():
+    url1 = "https://weather.com/weather/today/l/USNY0996:1:US"
+    local_file, header = urllib.urlretrieve(url1)
+    with open(local_file, "r") as f:
+        for line in f:
+            i = line.find("<span class=\"styles-xz0ANuUJ__temperature__3Ph8k\">")
+            j = line.find("<!---->", i)
+            if i > 0 and j > 0:
+                print("weather.com", float(line[i + 50:j]))
+
+def getHtml2():
+    url2 = "https://forecast.weather.gov/MapClick.php?lat=40.71455000000003&lon=-74.00713999999994#.WnYnpq6nH3g"
+    local_file, header = urllib.urlretrieve(url2)
+    with open(local_file, "r") as f:
+        for line in f:
+            i = line.find("<p class=\"myforecast-current-lrg\">")
+            j = line.find("&", i)
+            if i > 0 and j > 0:
+                print("weather.gov", float(line[i + 34:j]))
+
+getHtml1()
+getHtml2()
+
+console:
+('weather.com', 31.0)
+('weather.gov', 30.0)

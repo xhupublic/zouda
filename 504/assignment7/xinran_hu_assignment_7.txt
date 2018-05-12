@@ -1,0 +1,305 @@
+7.1 
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+import math
+import urllib
+
+class F:
+    def __init__(self, a, w):
+        self.a = a
+        self.w = w
+    
+    def value(self, x):
+        return math.exp(self.a * x) * math.sin(self.w * x)
+
+from math import *
+f = F(a=1.0, w=0.1)
+print f.value(x=pi)
+f.a = 2
+print f.value(pi)
+
+console:
+
+7.15086728514
+165.476021903
+
+
+
+7.2 
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+import math
+import urllib
+
+class Simple:
+    def __init__(self, i):
+        self.i = i
+        
+    def double(self):
+        self.i *= 2
+
+s1 = Simple(4)
+for i in range(4):
+    s1.double()
+print s1.i
+s2 = Simple("Hello")
+s2.double(); 
+s2.double()
+print s2.i
+s2.i = 100
+print s2.i
+
+console:
+
+64
+HelloHelloHelloHello
+100
+
+
+7.3 
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+import math
+import urllib
+
+class Account:
+    def __init__(self, name, account_number, initial_amount):
+        self.name = name
+        self.no = account_number
+        self.balance = initial_amount
+        self.transaction = 0
+
+    def deposit(self, amount):
+        self.balance += amount
+        self.transaction += 1
+        
+    def withdraw(self, amount):
+        self.balance -= amount
+        self.transaction += 1
+        
+    def dump(self):
+        s = "%s, %s, balance: %s, tran: %s" % (self.name, self.no, self.balance, self.transaction)
+        print s
+
+a = Account("Xinran", "1", 0)
+a.deposit(1)
+a.dump()
+a.withdraw(1)
+a.dump()
+
+console:
+Xinran, 1, balance: 1, tran: 1
+Xinran, 1, balance: 0, tran: 2
+
+7.4
+import math
+
+def dist(p1, p2):
+    x1, y1 = p1
+    x2, y2 = p2
+    return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+
+class Triangle:
+    def __init__(self, p1, p2, p3):
+        self.p1 = p1
+        self.p2 = p2
+        self.p3 = p3
+
+    def area(self):
+        x1, y1 = self.p1
+        x2, y2 = self.p2
+        x3, y3 = self.p3
+        return abs(0.5 * (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)))
+
+    def circumference(self):
+        p1 = self.p1
+        p2 = self.p2
+        p3 = self.p3
+        return dist(p1, p2) + dist(p2, p3) + dist(p3, p1)
+
+
+class Rectangle:
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
+
+    def area(self):
+        x1, y1 = self.p1
+        x2, y2 = self.p2
+        return abs((x2 - x1) * (y2 - y1))
+
+    def circumference(self):
+        x1, y1 = self.p1
+        x2, y2 = self.p2
+        return 2 * (abs(x2 - x1) + abs(y2 - y1))
+        
+
+
+7.5
+import matplotlib.pyplot as plt
+import sys
+import math
+import urllib
+
+class Line:
+    def __init__(self, p1, p2):
+        self.b = float(p2[1] - p1[1]) / (p2[0] - p1[0])
+        self.a = p1[1] - p1[0] * self.b
+    
+    def value(self, x):
+        return self.a + self.b * x
+
+
+line = Line((0,-1), (2,4))
+print line.value(0.5), line.value(0), line.value(1)
+
+console:
+0.25 -1.0 1.5
+
+
+
+7.6
+class Line:
+    def __init__(self, a, b):
+        if isinstance(a, (tuple,list)) and isinstance(b, (tuple,list)):
+            self.b = float(b[1] - a[1]) / (b[0] - a[0])
+            self.a = a[1] - a[0] * self.b
+        elif isinstance(a, (tuple,list)) and isinstance(b, (float,int)):
+            self.b = b
+            self.a = a[1] - a[0] * self.b
+        elif isinstance(a, (float,int)) and isinstance(b, (float,int)):
+            self.b = b
+            self.a = a
+        else:
+            print("invalid")
+
+    def value(self, x):
+        return self.a + self.b * x
+
+
+line = Line((0,-1), (2,4))
+print line.value(0.5), line.value(0), line.value(1)
+        
+line = Line((0,-1), 2.5)
+print line.value(0.5), line.value(0), line.value(1)
+
+line = Line(-1, 2.5)
+print line.value(0.5), line.value(0), line.value(1)
+
+
+console:
+0.25 -1.0 1.5
+0.25 -1.0 1.5
+0.25 -1.0 1.5
+
+
+7.28,
+
+class Polynomial:
+    def __init__(self, coefficients):
+        self.coeff = coefficients
+
+    def __call__(self, x):
+        s = 0
+        for k, v in self.coeff.iteritems():
+            s += self.coeff[k]*x**k
+        return s
+
+    def __add__(self, other):
+        coef = self.coeff
+        for k, v in other.coeff.iteritems():
+            if k not in coef:
+                coef[k] = 0
+            coef[k] += v
+        return Polynomial(coef)
+
+    
+
+p1 = Polynomial({1:1, 100:-3})
+p2 = Polynomial({1:-1, 20:1, 100:4})
+p3 = p1 + p2
+print(p3.coeff)
+
+console:
+{1: 0, 100: 1, 20: 1}
+
+7.29
+class Polynomial:
+    def __init__(self, coefficients):
+        self.coeff = coefficients
+
+    def __call__(self, x):
+        s = 0
+        for k, v in self.coeff.iteritems():
+            s += self.coeff[k]*x**k
+        return s
+
+    def __add__(self, other):
+        coef = self.coeff
+        for k, v in other.coeff.iteritems():
+            if k not in coef:
+                coef[k] = 0
+            coef[k] += v
+        return Polynomial(coef)
+
+    def __mul__(self, other):
+        coef = {}
+        for k1, v1 in self.coeff.iteritems():
+            for k2, v2 in other.coeff.iteritems():
+                k = k1 + k2
+                v = v1 * v2
+                if k not in coef:
+                    coef[k] = 0
+                coef[k] += v
+        return Polynomial(coef)
+
+p1 = Polynomial({1:1, 100:-3})
+p2 = Polynomial({1:-1, 20:1, 100:4})
+p3 = p1 * p2
+print(p3.coeff)
+
+
+console:
+{120: -3, 200: -12, 2: -1, 21: 1, 101: 7}
+
+
+7.30
+
+
+class Vec2D:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __add__(self, other):
+        if isintance(other, Vec2D):
+            return Vec2D(self.x + other.x, self.y + other.y)
+        elif isintance(other, (list,tuple)):
+            return Vec2D(self.x + other[0], self.y + other[1])
+        else:
+            return None
+
+    def __radd__(self, other): # defines other + self
+        return self.__add__(other)
+
+    def __sub__(self, other):
+        return Vec2D(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, other):
+        return self.x*other.x + self.y*other.y
+
+    def __abs__(self):
+        return math.sqrt(self.x**2 + self.y**2)
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+
+    def __str__(self):
+        return "(%g, %g)" % (self.x, self.y)
+
+    def __ne__(self, other):
+        return not self.__eq__(other) # reuse __eq__

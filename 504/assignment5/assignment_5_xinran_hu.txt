@@ -1,0 +1,194 @@
+#5.1
+import numpy as np
+import math
+
+xlist = np.linspace(-4, 4, 100)
+hlist = [(2 * math.pi) ** -0.5 * math.exp(x ** 2 * -0.5) for x in xlist]
+
+#5.2
+
+import numpy as np
+import math
+
+x = []
+y = []
+for xi in np.linspace(-4, 4, 100):
+    x.append(xi)
+    y.append((2 * math.pi) ** -0.5 * math.exp(xi ** 2 * -0.5))
+
+#5.3
+
+import numpy as np
+import math
+
+xlist = np.linspace(-4, 4, 100)
+hlist = (2 * math.pi) ** -0.5 * np.exp(xlist ** 2 * -0.5)
+
+ #5.4
+import numpy as np
+import math
+xlist = np.linspace(-4, 4, 100)
+
+hlist1 = (2 * math.pi) ** -0.5 * np.exp(xlist ** 2 * -0.5)
+hlist2 = []
+for x in xlist:
+    hlist2.append((2 * math.pi) ** -0.5 * np.exp(x ** 2 * -0.5))
+
+
+#5.5
+
+import math
+x = [0, 2]
+t = [1, 1.5]
+y = []
+for i in range(len(x)):
+    y.append(math.cos(math.sin(x[i])) + math.exp(t[i]))
+
+#5.6
+
+import numpy as np
+w = np.linspace(0, 3, 31)
+print(w[:])
+print(w[:-2])
+print(w[::5])
+print(w[2:-2:6])
+
+
+#5.7
+
+data = np.array(d)
+
+mean = np.mean(data)
+
+i = np.argmax(data)
+
+mean = [np.mean(data[i:i+10,]) for i in range(0, 10, data.shape[0])]
+
+#5.8
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+v0 = 10 
+g = 9.81
+x = np.linspace(0, 2 * v0 / g, 100)
+h = v0 * x + 0.5 * g * x ** 2
+plt.plot(x, h)
+plt.xlabel('time(s)')
+plt.ylabel('height(m)')
+plt.show()
+
+#5.9
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+
+vs = sys.argv[1:]
+g = 9.81
+for v in vs:
+    v = float(v) 
+    x = np.linspace(0, 2 * v / g, 100)
+    h = v * x + 0.5 * g * x ** 2
+    plt.plot(x, h)
+
+plt.xlabel = 'time(s)'
+plt.ylabel = 'height(m)'
+plt.show()
+
+
+
+#5.10
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+
+vs = sys.argv[1:]
+g = 9.81
+
+xmins = []
+xmaxs = []
+ymins = []
+ymaxs = []
+
+for v in vs:
+    v = float(v) 
+    x = np.linspace(0, 2 * v / g, 100)
+    h = v * x + 0.5 * g * x ** 2
+    
+    xmins.append(np.amin(x))
+    xmaxs.append(np.amax(x))
+    ymins.append(np.amin(h))
+    ymaxs.append(np.amax(h))
+    plt.plot(x, h)
+
+xmin = np.amin(xmins)
+xmax = np.amax(xmaxs)
+ymin = np.amin(ymins)
+ymax = np.amax(ymaxs)
+
+plt.xlim(xmin - .1, xmax + .1)
+plt.ylim(ymin - .1, ymax + .1)
+plt.xlabel = 'time(s)'
+plt.ylabel = 'height(m)'
+plt.show()
+
+
+5.11
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+
+f = np.linspace(-20, 120, 100)
+c1 = (f - 32) * 5 / 9
+c2 = (f - 30) / 2
+
+plt.plot(f, c1)
+plt.plot(f, c2)
+plt.xlabel = 'f'
+plt.ylabel = 'c'
+plt.show()
+
+5.15
+
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+import math
+
+t = 0
+x = np.linspace(-4, 4, 100)
+f = np.exp(-(x - 3 * t) ** 2) * np.sin(3 * math.pi * (x - t))
+
+plt.plot(x, f)
+plt.xlabel = 'x'
+plt.ylabel = 'f'
+plt.show()
+
+
+5.16
+
+
+
+5.17
+
+import numpy as np
+import math
+x = np.linspace(0, 2, 200)
+
+y = x * (2 - x)
+
+y1 = np.cos(18 * math.pi * x)
+
+import matplotlib.pyplot as plt
+
+plt.plot(x, y)
+plt.plot(x, y1)
+
+plt.show()
+
+
+5.1 TO 5.11 ,
+5.15 TO 5.17 for html report you can use plotly

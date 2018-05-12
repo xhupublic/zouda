@@ -1,0 +1,123 @@
+#4.1
+f = int(raw_input('enter f'))
+c = (f - 32) * 5.0 / 9
+print('cel is {0}'.format(c))
+
+
+#4.2
+
+import sys
+
+f = int(sys.argv[1])
+c = (f - 32) * 5.0 / 9
+print('cel is {0}'.format(c))
+
+#4.3
+
+import sys
+try:
+    f = int(sys.argv[1])
+    c = (f - 32) * 5.0 / 9
+    print('cel is {0}'.format(c))
+except Exception as e:
+    print(e)
+    
+#4.4
+
+try:
+    data = raw_input()
+    v = eval(data)
+    print(v, type(v))
+except Exception as e:
+    print(e)
+    
+
+#4.5
+import sys
+
+try:
+    data = int(sys.argv[1])
+    v = eval(data)
+    print(v, type(v))
+except Exception as e:
+    print(e)
+
+
+#4.6
+
+
+t = float(raw_input())
+v0 = float(raw_input())
+y = v0 * t - 0.5 * g * t ** 2
+print(y)
+
+
+#4.7
+t = float(sys.argv[1])
+v0 = float(sys.argv[2])
+y = v0 * t - 0.5 * g * t ** 2
+print(y)
+
+#4.8
+try:
+    t = float(sys.argv[1])
+    v0 = float(sys.argv[2])
+    y = v0 * t - 0.5 * g * t ** 2
+    print(y)
+except IndexException as e
+    t = float(raw_input())
+    v0 = float(raw_input())
+    y = v0 * t - 0.5 * g * t ** 2
+    print(y)
+
+# 4.9
+
+t = float(sys.argv[1])
+v0 = float(sys.argv[2])
+
+if t < 0 or t > 2 * v0 / g
+    print('invalid t')
+    return
+
+y = v0 * t - 0.5 * g * t ** 2
+print(y)
+
+
+#4.10
+
+t = float(sys.argv[1])
+v0 = float(sys.argv[2])
+
+if t < 0 or t > 2 * v0 / g
+    raise ValueError('invalid t')
+
+y = v0 * t - 0.5 * g * t ** 2
+print(y)
+
+
+
+#4.12
+
+import calendar, sys
+
+year, month, day = int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3])
+dayname = calendar.day_name[calendar.weekday(year, month, day)]
+print(dayname)
+
+
+
+# extra
+
+
+def countWord(s, w):
+    w = w.strip()
+    t = s.split()
+    print ("%s   : %s" % (w, t.count(w)))
+    print ("total : %s" % len(t))
+
+
+countWord("a a a a a b c", "a")
+
+
+a   : 5
+total : 7
