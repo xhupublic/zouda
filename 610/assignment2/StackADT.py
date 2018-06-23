@@ -1,3 +1,6 @@
+"""
+Author : Xinran Hu
+"""
 from LinkedListADT import *
 
 class StackADT:

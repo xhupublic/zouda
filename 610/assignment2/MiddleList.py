@@ -1,3 +1,7 @@
+"""
+Author : Xinran Hu
+"""
+
 from LinkedListADT import *
 
 class MiddleList:
@@ -18,13 +22,14 @@ class MiddleList:
         return slow.data
 
 def main():
-    data = range(12)
+    data = range(13)
     ml = MiddleList(data)
     n = ml.list.get_head()
+    d = []
     while n:
-        print(n.data)
+        d.append(n.data)
         n = n.next
-
+    print(d)
     print(ml.middle_list())
 
 if __name__ == "__main__":

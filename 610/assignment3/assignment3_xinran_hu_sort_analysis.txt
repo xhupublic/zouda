@@ -1,0 +1,39 @@
+"""
+Xinran Hu
+
+Quick sort analysis
+"""
+Expectation:
+
+The expected run time complexity of quicksort is nlog(n). But the worst case 
+run time complexity is n^2. The worst case occurs when the pivot of partition 
+is either the smallest or largest element. This should happen when data is sorted.
+If data is random, quciksort should be faster.
+
+I have tried quick sort on 12 different combo of data type and size, and the average 
+sort time is listed as below: 
+
+type random, size 500, avg sort time 4303193
+type random, size 1000, avg sort time 7405662
+type random, size 2000, avg sort time 20514035
+
+type sorted, size 500, avg sort time  113776016
+type sorted, size 1000, avg sort time 464076447
+type sorted, size 2000, avg sort time 1909725379
+
+type partiall_sorted, size 500, avg sort time 3402161
+type partiall_sorted, size 1000, avg sort time 25316214
+type partiall_sorted, size 2000, avg sort time 26673817
+
+type reverse_data, size 500, avg sort time 64442515
+type reverse_data, size 1000, avg sort time 300310564
+type reverse_data, size 2000, avg sort time 1457465410
+
+Result Analysis:
+(1) for all four types of data, the avg sort time increased as size grows 
+and the rate of time growth is more than the rate of size growth. This is 
+expected as the expected run time of quick sort is nlog(n)
+
+(2) random list has the fastest run time. partially sorted list is second fastest.
+Both sorted and reversely sorted data have slow run time. This is due to the fact 
+I choose pivot to be the last element in the list. 

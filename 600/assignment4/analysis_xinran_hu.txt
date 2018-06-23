@@ -1,0 +1,19 @@
+program output
+
+0 | estimate = 1.0000, true pct err 100.0000%, app pct err 100.0000%
+1 | estimate = 0.4517, true pct err 9.6623%, app pct err 121.3914%
+2 | estimate = 0.5018, true pct err 0.3592%, app pct err 9.9856%
+3 | estimate = 0.5000, true pct err 0.0071%, app pct err 0.3664%
+4 | estimate = 0.5000, true pct err 0.0001%, app pct err 0.0072%
+5 | estimate = 0.5000, true pct err 0.0000%, app pct err 0.0001%
+
+
+Analysis:
+
+(1) this method converges fast, after 3 terms added, the true
+error is already small
+
+(2) this method also converge stably 
+
+(3) approximate error is not a good indicator of ture error at 
+the begining. But it become very close to true error after 4 terms

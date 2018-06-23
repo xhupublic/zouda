@@ -1,3 +1,7 @@
+"""
+Author : Xinran Hu
+"""
+
 class QueueADT:
     def __init__(self, _max):
         self.items = [None] * _max

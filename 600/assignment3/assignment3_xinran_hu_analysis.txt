@@ -1,0 +1,67 @@
+3.6
+
+Results of each series true and approximate relative error:
+method1
+term : 0 | true rel err 14741.3% | apprx rel err 100.0%
+term : 1 | true rel err 59465.3% | apprx rel err 125.0%
+term : 2 | true rel err 126051.2% | apprx rel err 147.1%
+term : 3 | true rel err 183142.9% | apprx rel err 168.9%
+term : 4 | true rel err 203349.7% | apprx rel err 190.0%
+term : 5 | true rel err 183142.9% | apprx rel err 211.1%
+term : 6 | true rel err 138934.3% | apprx rel err 231.7%
+term : 7 | true rel err 91120.8% | apprx rel err 252.7%
+term : 8 | true rel err 52663.6% | apprx rel err 272.5%
+term : 9 | true rel err 27216.6% | apprx rel err 294.6%
+term : 10 | true rel err 12723.5% | apprx rel err 311.5%
+term : 11 | true rel err 5431.1% | apprx rel err 340.5%
+term : 12 | true rel err 2133.3% | apprx rel err 338.7%
+term : 13 | true rel err 776.1% | apprx rel err 430.3%
+term : 14 | true rel err 263.0% | apprx rel err 286.3%
+term : 15 | true rel err 83.4% | apprx rel err 2084.8%
+term : 16 | true rel err 24.8% | apprx rel err 86.7%
+term : 17 | true rel err 7.0% | apprx rel err 34.2%
+term : 18 | true rel err 1.9% | apprx rel err 8.7%
+term : 19 | true rel err 0.5% | apprx rel err 2.3%
+term : 20 | true rel err 0.1% | apprx rel err 0.6%
+========================================
+method2
+term : 0 | true rel err 14741.3% | apprx rel err 100.0%
+term : 1 | true rel err 2373.6% | apprx rel err 3000.0%
+term : 2 | true rel err 702.2% | apprx rel err 23125.0%
+term : 3 | true rel err 277.3% | apprx rel err 81944.4%
+term : 4 | true rel err 127.0% | apprx rel err 170247.4%
+term : 5 | true rel err 62.3% | apprx rel err 238064.2%
+term : 6 | true rel err 31.2% | apprx rel err 245481.9%
+term : 7 | true rel err 15.4% | apprx rel err 199372.3%
+term : 8 | true rel err 7.3% | apprx rel err 133993.6%
+term : 9 | true rel err 3.3% | apprx rel err 77337.8%
+term : 10 | true rel err 1.4% | apprx rel err 39393.1%
+term : 11 | true rel err 0.5% | apprx rel err 18055.6%
+term : 12 | true rel err 0.2% | apprx rel err 7549.1%
+term : 13 | true rel err 0.1% | apprx rel err 2907.4%
+term : 14 | true rel err 0.0% | apprx rel err 1038.8%
+term : 15 | true rel err 0.0% | apprx rel err 346.3%
+term : 16 | true rel err 0.0% | apprx rel err 108.2%
+term : 17 | true rel err 0.0% | apprx rel err 31.8%
+term : 18 | true rel err 0.0% | apprx rel err 8.8%
+term : 19 | true rel err 0.0% | apprx rel err 2.3%
+term : 20 | true rel err 0.0% | apprx rel err 0.6%
+
+
+Analysis:
+
+(1) given enough terms, both method converge to the correct value
+
+with 20 terms, both methods have less than 0.1% true error 
+
+(2) method2 converge faster then method1
+
+with 14 terms, method2 achieve 0.0% error compare to 263% of method1
+
+(3) method2 converge more stably than method1
+
+with each additional term added, method2 has its error decrease steadly.
+method1 has its absolute error goes up first.
+
+(4) method1's approximate error is closer to true error 
+

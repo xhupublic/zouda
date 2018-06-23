@@ -1,3 +1,7 @@
+"""
+Author : Xinran Hu
+"""
+
 from StackADT import *
 from QueueADT import *
 
