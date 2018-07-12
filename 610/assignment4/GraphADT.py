@@ -1,7 +1,7 @@
 """
 Arthor: Xinran Hu
 
-Graph ADT implementation
+Graph ADT implementation with adj matrix
 """
 
 class Vertex:
@@ -15,9 +15,6 @@ class GraphADT:
         self.max = 0
         self.adj = None
         self.vertices = []
-
-    def __repr__(self):
-        return "{} {} {} ".format(self.size, self.max, self.adj)
 
     def create_graph(self, _max):
         self.size = 0
@@ -60,7 +57,7 @@ class GraphADT:
         return s + "{:>6s} ".format(str(data))
 
     def printMatrix(self):
-        s = "" 
+        s = "\n" 
         s = self.append_cell(s)
         for i in range(self.size):
             s = self.append_cell(s, i)

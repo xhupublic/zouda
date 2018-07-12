@@ -1,11 +1,9 @@
+#! python 
 """
 Arthor: Xinran Hu
 
 Graph ADT unit test file
 """
-
-#! python 
-
 import unittest
 from GraphADT import *
 
@@ -24,7 +22,6 @@ class TestGraph(unittest.TestCase):
         g.add_edge(0, 1)
         g.add_edge(1, 0)
         g.add_edge(1, 2)
-        print("")
         g.printMatrix()
 
     def test_add_vertex(self):

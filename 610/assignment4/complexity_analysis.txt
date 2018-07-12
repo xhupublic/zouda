@@ -1,4 +1,6 @@
 """
+Arthor: Xinran Hu
+
 answers for question 2 & 3
 """
 #2 
@@ -16,12 +18,12 @@ T(n) = O(n^k a ^ (n/b)) = O(9n^2) = O(n^2)
 
 #3
 
-Based on the problm, and use substract and Conquer
-T(n) = 4 * T(n  / 4) + O(n)
-where a = 3, b = 4, k = 1
+Based on the problm, and use divide and Conquer
+T(n) = 4 * T(n / 4) + O(n)
+where a = 4, b = 4, k = 1
 
 The tool give the result:
-T(n) = nlog(n)
+T(n) = O(nlog(n))
 
 
 
