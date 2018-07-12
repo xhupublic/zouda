@@ -8,30 +8,27 @@ Floyd Algorithm implementation
 import copy
 
 class Floyd:
-
     @staticmethod
     def floyd2(n, W, D, P):
         for i in range(n):
             for j in range(n):
-                P[i][j] = 0
+                P[i][j] = None
                 D[i][j] = W[i][j]
         
         for k in range(n):
             for i in range(n):
-                for j in range(n):
+                for j in range(n): 
                     if D[i][k] + D[k][j] < D[i][j]:
                         P[i][j] = k
                         D[i][j] = D[i][k] + D[k][j]
-        print("ret", D)
+                    
 
     @staticmethod
     def path(P, q, r):
-        if P[q][r] != 0:
+        if P[q][r] != None:
             Floyd.path(P, q, P[q][r])
             print(P[q][r])
             Floyd.path(P, P[q][r], r)
-
-
 
     @staticmethod
     def create_2d_array(n, v=None):
@@ -63,8 +60,10 @@ def main():
     D = Floyd.create_2d_array(5, 0)
     P = Floyd.create_2d_array(5, 0)
     Floyd.floyd2(5, W, D, P)
-    print(D[4][0])
-    Floyd.path(P, 4, 0)    
+    
+    print("shoretest path from v3 to v2:", D[2][1])
+    print("path go throught these vertices:")
+    Floyd.path(P, 2, 1)    
 
 
 if __name__ == "__main__":
