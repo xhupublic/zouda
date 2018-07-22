@@ -32,5 +32,8 @@ class NQueen:
 
 for i in [13]:
     N = NQueen(i)
+    import time
+    s = time.time()
     N.queen(0)
+    print(time.time() - s)
     print(len(N.solutions))
