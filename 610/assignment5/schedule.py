@@ -1,5 +1,9 @@
 #! python
+"""
+Author: Xinran Hu
 
+Scheduler Implementation
+"""
 
 jobs = [
 (1, 2, 65), 
