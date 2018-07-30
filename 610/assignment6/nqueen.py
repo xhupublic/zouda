@@ -1,3 +1,10 @@
+#! python
+"""
+Author: Xinran Hu
+
+Nqueen Implementation
+"""
+
 class NQueen:
     def __init__(self, n):
         self.n = n
@@ -23,7 +30,7 @@ class NQueen:
     def queen(self, i):
         if not self.promising(i):
             return 
-        
+            
         if i == self.n:
             self.solutions.append(self.col[1:])
             return
