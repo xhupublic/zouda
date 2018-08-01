@@ -7,7 +7,7 @@ import time
 from city_graph import CityGraph
 from quick_sort import QuickSort
 from merge_sort import MergeSort
-
+import copy
 
 class Driver:
     def __init__(self):
@@ -51,29 +51,33 @@ class Driver:
         origin = cities[origin_id]
         res = self.graph.bfs(origin, max_dist)
         print("\n")
+
+        sort_by = "name" if sort_option == 1 else "distance"
+        
         print("Found {} Cities within {} miles from {}:".format(len(res), max_dist, origin))
-        print("=" * 40)
-
-
         
+        print("-" * 40)
+        
+        print("Sorted by {} using Quick Sort\n".format(sort_by))
         s = time.time()
-        for i in range(1):
-            quick_sort_res = self.quick_sort.sort(res, self.cmp)
-        print("Quick sort took {} ns".format((time.time() - s) * 1e6))
-        for city in quick_sort_res:
-            print(city[0], city[1])
+        for i in range(1000):
+            res_copy = copy.deepcopy(res)
+            quick_sort_res = self.quick_sort.sort(res_copy, self.cmp)
+        for i, city in enumerate(quick_sort_res):
+            print("{:<2d} | {:<12s} | {}".format(i, city[0], city[1]))
+        print("Quick sort took {} ms".format((time.time() - s) * 1e3))
         
-        print("=" * 40)
+        print("\n")
         
+        print("Sorted by {} using Merge Sort\n".format(sort_by))        
         s = time.time()
-        for i in range(1):
-            merge_sort_res = self.merge_sort.sort(res, self.cmp)
-        print("Merge sort took {} ns".format((time.time() - s) * 1e6))
-        for city in merge_sort_res:
-            print(city[0], city[1])
-
-        pass
-
+        for i in range(1000):
+            res_copy = copy.deepcopy(res)
+            merge_sort_res = self.merge_sort.sort(res_copy, self.cmp)
+        for i, city in enumerate(merge_sort_res):
+            print("{:<2d} | {:<12s} | {}".format(i, city[0], city[1]))
+        print("Merge sort took {} ms".format((time.time() - s) * 1e3))
+        
     def list_cities(self):
         cities = self.graph.get_cities()
         print("=" * 40)
