@@ -1,3 +1,6 @@
+"""
+implementation of quick sort
+"""
 import time
 class QuickSort:
     def __init__(self):

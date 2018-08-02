@@ -1,3 +1,7 @@
+"""
+raw data set
+"""
+
 cities = [
     "New York"
   , "Los Angeles"

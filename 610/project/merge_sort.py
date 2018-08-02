@@ -1,3 +1,7 @@
+"""
+implementation of merge sort
+"""
+
 import time
 
 class MergeSort:
