@@ -1,8 +1,8 @@
 #! python
 """
-main driver class implmenetation
-
+main driver class 
 """
+
 import time
 from city_graph import CityGraph
 from quick_sort import QuickSort
@@ -14,101 +14,117 @@ class Driver:
         self.graph = CityGraph()
         self.quick_sort = QuickSort()
         self.merge_sort = MergeSort()
-        self.cmp = None
 
-    def search_neighbour(self):
+    def get_input(self):
+        self.list_cities()
         try:
-            self.list_cities()
-            print("Enter Origin City Id:")
-            origin_id = int(input())
-
-            print("Enter Search Radius:")
-            max_dist = float(input())
-        
-            print("Sorted City by (1) Name or (2) Distance?")
-            sort_option = int(input())
+            origin = int(input("Enter Origin City Id:"))
+            radius = float(input("Enter Search Radius:"))
+            sort_option = int(input("Sorted by 1) Name or 2) Distance?"))
         except:
-            print("Invalid Input, please retry...")
+            print("Invalid Input, please try again")
             return
 
         cities = self.graph.get_cities()
-        if origin_id < 0 or origin_id >= len(cities):
+        if origin < 0 or origin >= len(cities):
             print("origin is not a valid id")
             return
 
-        if max_dist <= 0:
+        if radius <= 0:
             print("max distance can not be negative or zero")
             return
 
         if sort_option not in [1, 2]:
             print("invalid sort option")
             return
-        elif sort_option is 1:
-            self.cmp = lambda x, y : x[0] < y[0]
+        
+        return (origin, radius, sort_option)
+
+    def search(self, origin, radius):
+        cities = self.graph.get_cities()
+        origin_city = cities[origin]
+        res = self.graph.bfs(origin_city, radius)
+        print("Found {} Cities within {} miles from {}:".format(len(res), radius, origin_city))
+        return res
+
+    def sort(self, data, sort_option, algo):
+        if sort_option is 1:
+            cmp = lambda x, y : x[0] < y[0]
+            sort_by = "name"
         else:
-            self.cmp = lambda x, y : x[1] < y[1]
-
-        origin = cities[origin_id]
-        res = self.graph.bfs(origin, max_dist)
+            cmp = lambda x, y : x[1] < y[1]
+            sort_by = "distance"
+        n = 1000
+        total_time = 0
+        for i in range(n):
+            data_copy = copy.deepcopy(data)
+            s = time.time()
+            sorted_data = algo.sort(data_copy, cmp)
+            total_time += (time.time() - s)
+         
+        print("{} took {:4.4f} ms and {} comparisons".format(algo.name, total_time * 1e3, algo.compare))
+        print("Sorted by {}".format(sort_by))
+        for i, city in enumerate(sorted_data):
+            print("{:<2d} | {:<12s} | {}".format(i, city[0], city[1]))
         print("\n")
 
-        sort_by = "name" if sort_option == 1 else "distance"
-        
-        print("Found {} Cities within {} miles from {}:".format(len(res), max_dist, origin))
-        
-        print("-" * 40)
-        
-        print("Sorted by {} using Quick Sort\n".format(sort_by))
-        s = time.time()
-        for i in range(1000):
-            res_copy = copy.deepcopy(res)
-            quick_sort_res = self.quick_sort.sort(res_copy, self.cmp)
-        for i, city in enumerate(quick_sort_res):
-            print("{:<2d} | {:<12s} | {}".format(i, city[0], city[1]))
-        print("Quick sort took {} ms".format((time.time() - s) * 1e3))
-        
-        print("\n")
-        
-        print("Sorted by {} using Merge Sort\n".format(sort_by))        
-        s = time.time()
-        for i in range(1000):
-            res_copy = copy.deepcopy(res)
-            merge_sort_res = self.merge_sort.sort(res_copy, self.cmp)
-        for i, city in enumerate(merge_sort_res):
-            print("{:<2d} | {:<12s} | {}".format(i, city[0], city[1]))
-        print("Merge sort took {} ms".format((time.time() - s) * 1e3))
+    def search_neighbour(self):
+        user_input = self.get_input()
+        if user_input is None:
+            return
+
+        origin, radius, sort_option = user_input
+        res = self.search(origin, radius)
+        self.sort(res, sort_option, self.quick_sort)
+        self.sort(res, sort_option, self.merge_sort)
         
     def list_cities(self):
         cities = self.graph.get_cities()
         print("=" * 40)
-        print("{:<3s} | {:>12s}".format("Id", "Name"))
+        print("{:<3s} | {:>20s}".format("Id", "Name"))
         print("-" * 40)
         for idx, name in enumerate(cities):
-            print("{:<3d} | {:>12s}".format(idx, name))
+            print("{:<3d} | {:>20s}".format(idx, name))
         print("=" * 40)
     
+    def add_city(self):
+        name = input("New City Name:")
+        self.graph.add_city(name)
+    
+    def add_road(self):
+        from_city = input("From City:")
+        to_city = input("To City:")
+        distance = int(input("Distance:"))
+        self.graph.add_road(from_city, to_city, distance)
+
     def show_menu(self):
         s = """
 =============================
 Choose Command... 
 
-(1) List Cities
-(2) Search Neighbors
-(3) Exit
+1) List Cities
+2) Add City
+3) Add Road
+4) Search Nearby Cities 
+5) Exit
 =============================
     """
         print(s)
         g = None
         cmd = input()
         if cmd == "1":
-            print("Listing Cities...")
             self.list_cities()
             return True
         elif cmd == "2":
-            print("Searching Neighbors...")
-            self.search_neighbour()
+            self.add_city()
             return True
         elif cmd == "3":
+            self.add_road()
+            return True
+        elif cmd == "4":
+            self.search_neighbour()
+            return True
+        elif cmd == "5":
             return False
         else:
             print("Invalid cmd: '{}', choose again".format(cmd))
