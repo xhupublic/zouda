@@ -30,11 +30,13 @@ class MergeSort:
         j = 0
         res = []
         while i < len(l1) and j < len(l2):
+            self.compare += 1
             if cmp(l1[i], l2[j]):
-                self.compare += 1
+                # choose from l1
                 res.append(l1[i])
                 i += 1
             else:
+                # choose from l1
                 res.append(l2[j])
                 j += 1
         

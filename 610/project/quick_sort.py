@@ -20,10 +20,14 @@ class QuickSort:
         self.quick_sort(data, cmp, k + 1, j)
 
     def partition(self, data, cmp, i, j):
+        """
+        parition by last element
+        """
         pivot = data[j]
         k = i
         while i < j:
             if cmp(data[i], pivot):
+                # move to first part
                 self.compare += 1
                 data[k], data[i] = data[i], data[k]
                 k += 1

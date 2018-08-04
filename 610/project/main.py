@@ -16,6 +16,7 @@ class Driver:
         self.merge_sort = MergeSort()
 
     def get_input(self):
+        # get user input for search nearby city
         self.list_cities()
         try:
             origin = int(input("Enter Origin City Id:"))
@@ -48,12 +49,15 @@ class Driver:
         return res
 
     def sort(self, data, sort_option, algo):
+
+        # create compare function
         if sort_option is 1:
             cmp = lambda x, y : x[0] < y[0]
             sort_by = "name"
         else:
             cmp = lambda x, y : x[1] < y[1]
             sort_by = "distance"
+
         n = 1000
         total_time = 0
         for i in range(n):
@@ -74,6 +78,7 @@ class Driver:
             return
 
         origin, radius, sort_option = user_input
+        # res is unsorted nearby cities
         res = self.search(origin, radius)
         self.sort(res, sort_option, self.quick_sort)
         self.sort(res, sort_option, self.merge_sort)
@@ -133,13 +138,13 @@ Choose Command...
     def run(self):
         run = True
         while run:
+            # run forever until 5 is pressed
             run = self.show_menu()
 
     
 def main():
     driver = Driver()
     driver.run()
-
 
 
 if __name__ == "__main__":
