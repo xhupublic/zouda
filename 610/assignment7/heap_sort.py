@@ -1,12 +1,15 @@
+#! python3
+"""
+heapsort implementation
+
+Xinran Hu
+"""
+
 class Heap:
-    def __init__(self, data, cmp=lambda x, y : x < y):
+    def __init__(self, data, cmp):
         self.data = [x for x in data]
         self.n = len(data)
         self.cmp = cmp
-
-
-    def __repr__(self):
-        return "{}|{}".format(self.n, self.data)
 
     def siftdonw(self, i):
         if i < 0 or i >= self.n:
@@ -27,24 +30,28 @@ class Heap:
 
     
     def heapify(self):
-        print("called")
         for i in range(int(self.n / 2), -1, -1):
             self.siftdonw(i)
         
+        
 
 class HeapSort:    
-    def __init__(self):
-        pass
+    def sort(self, data, cmp=lambda x, y : x < y):
+        h = Heap(data, cmp)
+        h.heapify()
+        while h.n > 1:
+            h.data[0], h.data[h.n - 1] = h.data[h.n - 1], h.data[0]
+            h.n -= 1
+            h.heapify()
 
-    def make_heap(self):
-        pass
+        return h.data
 
-    def sort(self, data, cmp):
-        pass
 
 
 
 d = [3, 2, 7, 4, 5, 6, 1]
-h = Heap(d)
-h.heapify()
-print(h)
+h = HeapSort()
+e = h.sort(d, lambda x, y : x > y)
+print(d)
+print(e)
+heap_sort.py (END)
